@@ -1,0 +1,22 @@
+{
+  "name": "tralhofrontend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Projeto Front-End - API de Desenhos  Descrição Este projeto consiste em uma aplicação front-end que consome dados de uma API pública de desenhos animados e exibe cards dinâmicos com informações dos personagens. O objetivo é demonstrar domínio em HTML, CSS e JavaScript, com foco em manipulação do DOM e consumo de dados em tempo real via fetch.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "proxy": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "node-fetch": "^3.3.2"
+  }
+}
