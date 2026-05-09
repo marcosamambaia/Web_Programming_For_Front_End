@@ -1,22 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html> <!-- Declaração do tipo de documento: HTML5 -->
+<html lang="pt-BR"> <!-- Define o idioma principal da página como português do Brasil -->
 <head>
-  <meta charset="UTF-8">
-  <title>SuperHero API</title>
-  <link rel="stylesheet" href="style/style.css">
+  <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 (suporta acentos e caracteres especiais) -->
+  <title>Galeria dos Simpsons</title> <!-- Título que aparece na aba do navegador -->
+  <link rel="stylesheet" href="style/style.css"> <!-- Importa o arquivo CSS para estilizar a página -->
 </head>
 <body>
-  <h1>Galeria de Super-Heróis</h1>
+  <!-- Cabeçalho da página -->
+  <header>
+    <h1>Galeria de Personagens dos Simpsons</h1> <!-- Título principal exibido na página -->
+  </header>
 
-  <!-- Campo de busca -->
-  <div id="search-area">
-    <input type="text" id="hero-input" placeholder="Digite o nome do herói">
+  <!-- Área de busca -->
+  <section id="search-area">
+    <!-- Campo de texto onde o usuário digita o nome do personagem -->
+    <input type="text" id="hero-input" placeholder="Digite o nome do personagem">
+    <!-- Botão que dispara a busca -->
     <button id="search-btn">Buscar</button>
-  </div>
+  </section>
 
-  <!-- Container dos cards -->
-  <div id="cards-container"></div>
+  <!-- Área principal onde os cards serão exibidos -->
+  <main>
+    <!-- Container vazio que será preenchido dinamicamente com os cards dos personagens -->
+    <div id="cards-container"></div>
+  </main>
 
+  <!-- Rodapé da página -->
+  <footer>
+    <p>Projeto Front-End - API Simpsons</p> <!-- Texto simples de identificação -->
+  </footer>
+
+  <!-- Importa o script principal em formato de módulo ES6 -->
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

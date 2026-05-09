@@ -1,13 +1,25 @@
-const TOKEN = "0532e636d30e78cc901d934904503bc1"; // seu token
-const BASE_URL = `https://superheroapi.com/api.php/${TOKEN}`;
+// URL base da API dos Simpsons, já pedindo até 1000 personagens
+const BASE_URL = "https://apisimpsons.fly.dev/api/personajes?limit=1000";
 
+// Função assíncrona que busca personagens pelo nome
 export async function searchHero(name) {
   try {
-    const response = await fetch(`${BASE_URL}/search/${name}`);
+    // Faz a requisição HTTP para a API
+    const response = await fetch(BASE_URL);
+
+    // Converte a resposta para JSON
     const data = await response.json();
-    return data.results || [];
+
+    // Filtra os personagens retornados pelo campo "Nombre"
+    // toLowerCase() garante que a busca não seja sensível a maiúsculas/minúsculas
+    return data.docs.filter((hero) =>
+      hero.Nombre.toLowerCase().includes(name.toLowerCase())
+    );
   } catch (error) {
-    console.error("Erro ao buscar herói:", error);
+    // Caso ocorra algum erro (ex: sem internet ou API fora do ar)
+    console.error("Erro ao buscar personagem:", error);
+
+    // Retorna um array vazio para evitar quebrar o código
     return [];
   }
 }

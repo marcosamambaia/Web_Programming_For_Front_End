@@ -1,66 +1,38 @@
-// Importa as funções de outros arquivos
-import { searchHero } from "./api.js";      // função que busca heróis na API
-import { createHeroCard } from "./dom.js";  // função que cria o card no DOM
+// Importa as funções de busca e criação de card
+import { searchHero } from "./api.js";
+import { createHeroCard } from "./dom.js";
 
-// Seleciona elementos da página
-const container = document.getElementById("cards-container"); // onde os cards vão aparecer
-const input = document.getElementById("hero-input");          // campo de texto para digitar o nome
-const button = document.getElementById("search-btn");         // botão "Buscar"
+// Pega os elementos do HTML
+const input = document.getElementById("hero-input");       // campo de texto
+const button = document.getElementById("search-btn");      // botão de busca
+const container = document.getElementById("cards-container"); // área dos cards
 
-// Função principal que carrega os heróis
-async function loadHeroes(name) {
-    container.innerHTML = ""; // limpa antes de buscar
+// Adiciona evento de clique no botão
+button.addEventListener("click", async () => {
+  // Pega o valor digitado e remove espaços extras
+  const name = input.value.trim();
 
-    try {
-        console.log("🔎 Buscando herói:", name);
+  // Limpa o container antes de mostrar novos resultados
+  container.innerHTML = "";
 
-        const heroes = await searchHero(name);
-        console.log("📦 Retorno da API:", heroes);
+  // Se o usuário não digitou nada, mostra aviso
+  if (!name) {
+    container.innerHTML = "<p>Digite um nome para buscar.</p>";
+    return;
+  }
 
-        if (!heroes || heroes.length === 0) {
-            console.warn("⚠️ Nenhum herói encontrado!");
-            const msg = document.createElement("p");
-            msg.textContent = "Herói não encontrado!";
-            container.appendChild(msg);
-            return;
-        }
+  // Chama a função que busca personagens na API
+  const heroes = await searchHero(name);
 
-        heroes.forEach(hero => {
-            console.log("🦸 Objeto completo:", hero);
-            const card = createHeroCard(hero);
-            container.appendChild(card);
-        });
+  // Se não encontrar nenhum personagem, mostra aviso
+  if (heroes.length === 0) {
+    container.innerHTML = "<p>Nenhum personagem encontrado.</p>";
+    return;
+  }
 
-    } catch (error) {
-        console.error("❌ Erro ao acessar a API:", error);
-
-        // Mensagem clara na página
-        const msg = document.createElement("p");
-        msg.textContent = "⚠️ Não foi possível acessar a API. Verifique sua conexão com a internet.";
-        msg.style.color = "red"; // destaque em vermelho
-        container.appendChild(msg);
-    }
-}
-
-
-
-
-// Evento de clique no botão "Buscar"
-button.addEventListener("click", () => {
-    const heroName = input.value.trim(); // pega o texto digitado
-    console.log("🖱️ Clique em buscar:", heroName); // debug
-    if (heroName) {
-        loadHeroes(heroName); // chama a função principal
-    }
-});
-
-// Evento de pressionar Enter no campo de texto
-input.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-        const heroName = input.value.trim(); // pega o texto digitado
-        console.log("⌨️ Enter pressionado:", heroName); // debug
-        if (heroName) {
-            loadHeroes(heroName); // chama a função principal
-        }
-    }
+  // Para cada personagem encontrado, cria um card e adiciona ao container
+  heroes.forEach((hero) => {
+    const card = createHeroCard(hero);
+    container.appendChild(card);
+  });
 });

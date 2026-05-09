@@ -1,36 +1,33 @@
-// Função responsável por montar o card de cada herói
+// Função que cria o card visual de cada personagem
 export function createHeroCard(hero) {
-  // Cria o container principal do card
+  // Cria um elemento <div> que será o card
   const card = document.createElement("div");
-  card.className = "card";
+  card.className = "card"; // adiciona a classe CSS "card"
 
-  // Nome do herói
+  // Cria o título com o nome do personagem
   const nameElement = document.createElement("h2");
-  nameElement.textContent = hero.name;
+  nameElement.textContent = hero.Nombre;
 
-  // Imagem do herói
+  // Cria a imagem do personagem
   const imageElement = document.createElement("img");
-  // Se a API retornar uma URL de imagem, usamos o proxy para evitar bloqueio CORP/CORS
-  // Caso contrário, usamos um placeholder local
-  imageElement.src = hero.image?.url
-    ? `http://localhost:3000/proxy-image?url=${encodeURIComponent(hero.image.url)}`
-    : "assets/images/placeholder.png";
-  imageElement.alt = hero.name;
+  imageElement.alt = hero.Nombre; // texto alternativo para acessibilidade
+  // Se a API tiver imagem, usa; senão, usa um placeholder local
+  imageElement.src = hero.Imagen || "assets/images/placeholder.png";
 
-  // Estatísticas principais (força e inteligência)
-  const statsElement = document.createElement("p");
-  statsElement.textContent = `Força: ${hero.powerstats.strength} | Inteligência: ${hero.powerstats.intelligence}`;
+  // Cria o parágrafo com a ocupação
+  const occupationElement = document.createElement("p");
+  occupationElement.textContent = `Ocupação: ${hero.Ocupacion || "N/A"}`;
 
-  // Informações adicionais (publisher)
-  const bioElement = document.createElement("p");
-  bioElement.textContent = `Publisher: ${hero.biography.publisher}`;
+  // Cria o parágrafo com o estado (vivo, morto, etc.)
+  const stateElement = document.createElement("p");
+  stateElement.textContent = `Estado: ${hero.Estado || "N/A"}`;
 
-  // Monta o card adicionando os elementos criados
+  // Adiciona todos os elementos dentro do card
   card.appendChild(nameElement);
   card.appendChild(imageElement);
-  card.appendChild(statsElement);
-  card.appendChild(bioElement);
+  card.appendChild(occupationElement);
+  card.appendChild(stateElement);
 
-  // Retorna o card pronto para ser exibido na página
+  // Retorna o card pronto para ser exibido
   return card;
 }

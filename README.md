@@ -1,37 +1,111 @@
-Projeto Front-End - API de Desenhos
- Descrição
-Este projeto consiste em uma aplicação front-end que consome dados de uma API pública de desenhos animados e exibe cards dinâmicos com informações dos personagens.
-O objetivo é demonstrar domínio em HTML, CSS e JavaScript, com foco em manipulação do DOM e consumo de dados em tempo real via fetch.
+===========================================================
+        PROJETO: GALERIA DE PERSONAGENS DOS SIMPSONS
+===========================================================
 
-Estrutura do Projeto
+DESCRIÇÃO
+------------
+Este projeto consome a API pública dos Simpsons:
+https://apisimpsons.fly.dev/api/personajes?limit=1000
 
-´´´ projeto-api-desenhos/
-│
-├── index.html              # Página principal
-├── style/
-│   ├── reset.css           # Reset de estilos
-│   └── style.css           # Estilos principais
-│
-├── js/
-│   ├── api.js              # Funções de consumo da API
-│   ├── dom.js              # Funções de manipulação do DOM
-│   └── main.js             # Script principal (integra API + DOM)
-│
-├── assets/
-│   ├── images/             # Imagens estáticas
-│   └── icons/              # Ícones
-│
-├── docs/
-│   └── teoria.pdf          # Parte teórica do trabalho
-│
-├── README.md               # Documentação do projeto
-└── LICENSE                 # Licença (opcional)
-´´´ 
+Ele permite buscar personagens pelo nome e exibir
+informações como:
+- Nome
+- Imagem
+- Ocupação
+- Estado (vivo, morto, etc.)
 
-Tecnologias Utilizadas:
+Tudo é feito diretamente no navegador (front-end),
+sem necessidade de servidor ou proxy.
 
-HTML5 → Estrutura da página
-CSS3 → Estilização e responsividade
-JavaScript (ES6+) → Consumo da API e manipulação do DOM
-Fetch API → Requisições HTTP assíncronas
-GitHub Pages → Publicação do projeto
+-----------------------------------------------------------
+COMO FUNCIONA A REQUISIÇÃO DA API
+-----------------------------------------------------------
+
+1. O front-end (JavaScript) faz um `fetch` para a URL:
+   https://apisimpsons.fly.dev/api/personajes?limit=1000
+
+2. A API retorna um objeto JSON com a lista de personagens:
+   {
+     "docs": [
+       {
+         "Nombre": "Homer Simpson",
+         "Imagen": "https://...",
+         "Ocupacion": "Operador na Usina Nuclear",
+         "Estado": "Vivo"
+       },
+       ...
+     ]
+   }
+
+3. O código filtra os resultados pelo nome digitado
+   no campo de busca (`hero-input`).
+
+4. Para cada personagem encontrado, é criado um "card"
+   com nome, imagem e informações adicionais.
+
+-----------------------------------------------------------
+ARQUITETURA DO PROJETO
+-----------------------------------------------------------
+
+                +-------------------+
+                |   API Simpsons    |
+                | (dados em JSON)   |
+                +---------+---------+
+                          |
+                          v
+                +-------------------+
+                |   api.js          |
+                | - Faz o fetch     |
+                | - Filtra resultados|
+                +---------+---------+
+                          |
+                          v
+                +-------------------+
+                |   main.js         |
+                | - Controla input  |
+                | - Chama api.js    |
+                | - Renderiza cards |
+                +---------+---------+
+                          |
+                          v
+                +-------------------+
+                |   dom.js          |
+                | - Cria elementos  |
+                | - Monta card HTML |
+                +---------+---------+
+                          |
+                          v
+                +-------------------+
+                |   index.html      |
+                | - Estrutura base  |
+                | - Campo de busca  |
+                | - Container cards |
+                +-------------------+
+
+-----------------------------------------------------------
+FRONT-END vs BACK-END
+-----------------------------------------------------------
+
+FRONT-END:
+- index.html → estrutura da página
+- style.css → estilos visuais
+- main.js → lógica da busca e exibição
+- dom.js → criação dos cards
+- api.js → requisição à API
+
+BACK-END:
+- Neste projeto NÃO há back-end próprio.
+- A API dos Simpsons já funciona como servidor,
+  entregando os dados prontos em JSON.
+
+-----------------------------------------------------------
+COMO USAR
+-----------------------------------------------------------
+
+1. Abra o arquivo index.html no navegador.
+2. Digite o nome de um personagem (ex: "Homer").
+3. Clique em "Buscar".
+4. Veja os cards renderizados com informações
+   e imagens dos personagens.
+
+===========================================================
