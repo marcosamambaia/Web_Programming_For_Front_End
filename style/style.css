@@ -1,16 +1,17 @@
 /* Estilo geral da página */
 body {
-  font-family: Arial, sans-serif;
-  background: #f0f2f5;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background: linear-gradient(180deg, #fdd835, #fff176); /* amarelo Simpsons */
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
-/* Título */
+/* Cabeçalho */
 h1 {
   margin: 20px;
-  color: #222;
+  color: #2e2e2e;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
 /* Área de busca */
@@ -19,24 +20,28 @@ h1 {
 }
 
 #hero-input {
-  padding: 8px;
-  width: 220px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 10px;
+  width: 250px;
+  border: 2px solid #f57c00; /* laranja sofá */
+  border-radius: 8px;
 }
 
 #search-btn {
-  padding: 8px 12px;
+  padding: 10px 15px;
   margin-left: 5px;
   border: none;
-  border-radius: 5px;
-  background-color: #007bff;
+  border-radius: 8px;
+  background-color: #1976d2; /* azul calça Homer */
   color: white;
   cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 #search-btn:hover {
-  background-color: #0056b3;
+  background-color: #0d47a1; /* azul mais escuro */
+  transform: scale(1.05);
 }
 
 /* Container dos cards em grid responsivo */
@@ -50,34 +55,37 @@ h1 {
 /* Estilo dos cards */
 .card {
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
   text-align: center;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.3s;
+  border: 3px solid #fdd835; /* amarelo Simpsons */
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.07);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
 }
 
-/* Imagem do herói */
+/* Imagem do personagem */
 .card img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 2px solid #f57c00; /* laranja sofá */
 }
 
-/* Nome do herói */
+/* Nome do personagem */
 .card h2 {
-  font-size: 1.2em;
+  font-size: 1.4em;
   margin: 10px 0;
-  color: #333;
+  color: #1976d2; /* azul calça Homer */
 }
 
 /* Texto dos atributos */
 .card p {
-  font-size: 0.9em;
-  color: #555;
+  font-size: 1em;
+  color: #333;
 }

@@ -109,3 +109,85 @@ COMO USAR
    e imagens dos personagens.
 
 ===========================================================
+USUÁRIO DIGITA NOME
+        |
+        v
+   [main.js] -------------------------------
+   | - Captura o valor do input             |
+   | - Limpa o container                    |
+   | - Chama searchHero(name)               |
+   ------------------------------------------
+        |
+        v
+   [api.js] --------------------------------
+   | - BASE_URL aponta para API Simpsons    |
+   | - fetch(BASE_URL) -> requisição HTTP   |
+   | - response.json() -> converte em JSON  |
+   | - data.docs -> array de personagens    |
+   | - filter() -> compara hero.Nombre      |
+   |   com o texto digitado (case-insensitive)|
+   | - Retorna array filtrado               |
+   ------------------------------------------
+        |
+        v
+   [main.js] -------------------------------
+   | - Recebe array de personagens          |
+   | - Se vazio -> mostra mensagem          |
+   | - Se não vazio -> percorre com forEach |
+   | - Para cada hero -> chama createHeroCard|
+   ------------------------------------------
+        |
+        v
+   [dom.js] --------------------------------
+   | - Cria elementos HTML dinamicamente    |
+   |   <div class="card">                   |
+   |   <h2> com hero.Nombre                 |
+   |   <img> com hero.Imagen                |
+   |   <p> com hero.Ocupacion               |
+   |   <p> com hero.Estado                  |
+   | - Retorna o card pronto                |
+   ------------------------------------------
+        |
+        v
+   [main.js] -------------------------------
+   | - container.appendChild(card)          |
+   | - Cards aparecem na tela               |
+   ------------------------------------------
+===========================================================
+
+searchHero(name) (api.js)
+- Função assíncrona (async) -> permite usar await
+- fetch(BASE_URL) -> dispara requisição GET para API
+- response.json() -> transforma resposta em objeto JS
+- data.docs -> contém todos os personagens
+- filter() -> percorre cada personagem
+   hero.Nombre.toLowerCase().includes(name.toLowerCase())
+   -> compara ignorando maiúsculas/minúsculas
+- Retorna apenas os personagens que batem com o nome
+
+createHeroCard(hero) (dom.js)
+- Cria um <div> com classe "card"
+- Cria <h2> com o nome do personagem
+- Cria <img> com a URL da imagem
+   - Se não houver imagem, usa placeholder
+- Cria <p> com ocupação
+- Cria <p> com estado
+- Junta tudo dentro do card
+- Retorna o card pronto para ser exibido
+
+
+main.js
+- Captura elementos do DOM (input, botão, container)
+- Adiciona evento de clique no botão
+- Quando clicado:
+   - Pega valor do input
+   - Limpa container
+   - Se vazio -> mostra aviso
+   - Se não vazio -> chama searchHero(name)
+   - Recebe array de personagens
+   - Se vazio -> mostra aviso
+   - Se não vazio -> percorre array
+   - Para cada personagem -> cria card com createHeroCard
+   - Adiciona card ao container
+
+
