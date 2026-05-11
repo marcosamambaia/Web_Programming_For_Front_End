@@ -1,6 +1,9 @@
  Galeria de Personagens dos Simpsons
+ 
  Descrição
+ 
 Este projeto consome a API pública dos Simpsons:
+
 https://apisimpsons.fly.dev/api/personajes?limit=1000
 
 Ele permite buscar personagens pelo nome e exibir informações como:
