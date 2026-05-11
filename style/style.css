@@ -89,3 +89,13 @@ h1 {
   font-size: 1em;
   color: #333;
 }
+
+/* Mensagem de erro */
+.error-message {
+  color: #b71c1c; /* vermelho */
+  font-weight: bold;
+  background-color: #ffcdd2; /* fundo claro */
+  padding: 10px;
+  border-radius: 8px;
+  margin: 20px;
+}

@@ -21,18 +21,25 @@ button.addEventListener("click", async () => {
     return;
   }
 
-  // Chama a função que busca personagens na API
-  const heroes = await searchHero(name);
+  try {
+    // Chama a função que busca personagens na API
+    const heroes = await searchHero(name);
 
-  // Se não encontrar nenhum personagem, mostra aviso
-  if (heroes.length === 0) {
-    container.innerHTML = "<p>Nenhum personagem encontrado.</p>";
-    return;
+    // Se não encontrar nenhum personagem, mostra aviso
+    if (heroes.length === 0) {
+      container.innerHTML = "<p>Nenhum personagem encontrado.</p>";
+      return;
+    }
+
+    // Para cada personagem encontrado, cria um card e adiciona ao container
+    heroes.forEach((hero) => {
+      const card = createHeroCard(hero);
+      container.appendChild(card);
+    });
+  } catch (error) {
+    // Aviso de erro de conexão com a API
+    container.textContent = "⚠️ Não foi possível conectar à API. Tente novamente mais tarde.";
+    container.className = "error-message";
+    console.error("Erro ao buscar dados da API:", error);
   }
-
-  // Para cada personagem encontrado, cria um card e adiciona ao container
-  heroes.forEach((hero) => {
-    const card = createHeroCard(hero);
-    container.appendChild(card);
-  });
 });

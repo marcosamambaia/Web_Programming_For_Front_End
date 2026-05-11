@@ -19,7 +19,7 @@ export async function searchHero(name) {
     // Caso ocorra algum erro (ex: sem internet ou API fora do ar)
     console.error("Erro ao buscar personagem:", error);
 
-    // Retorna um array vazio para evitar quebrar o código
-    return [];
+    // Lança o erro para ser tratado no main.js
+    throw new Error("Falha na conexão com a API");
   }
 }
