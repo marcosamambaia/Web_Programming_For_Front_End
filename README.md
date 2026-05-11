@@ -11,11 +11,11 @@ Imagem
 
 Ocupação
 
-⚡ Estado (vivo, morto, etc.)
+ Estado (vivo, morto, etc.)
 
 Tudo é feito diretamente no navegador (front-end), sem necessidade de servidor ou proxy.
 
-🔌 Como funciona a requisição da API
+Como funciona a requisição da API
 O front-end (JavaScript) faz um fetch para a URL da API.
 
 A API retorna um objeto JSON com a lista de personagens.
