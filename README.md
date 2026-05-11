@@ -25,7 +25,7 @@ O código filtra os resultados pelo nome digitado no campo de busca (hero-input)
 Para cada personagem encontrado, é criado um card com nome, imagem e informações adicionais.
 
 Exemplo de resposta da API:
-´´´ {
+``` {
   "docs": [
     {
       "Nombre": "Homer Simpson",
@@ -35,9 +35,11 @@ Exemplo de resposta da API:
     }
   ]
 }
-´´´
+```
+
 Arquitetura do Projeto
-´´´ +-------------------+
+```
+ +-------------------+
 |   API Simpsons    |
 | (dados em JSON)   |
 +---------+---------+
@@ -71,7 +73,7 @@ Arquitetura do Projeto
 | - Campo de busca  |
 | - Container cards |
 +-------------------+
-´´´
+```
 Front-End vs Back-End
 Front-End:
 
